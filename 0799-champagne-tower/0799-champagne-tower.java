@@ -1,6 +1,5 @@
 class Solution {
     public double champagneTower(int poured, int query_row, int query_glass) {
-        // Create a 2D array to represent the champagne in each glass
         double[][] glasses = new double[101][101];
 
         glasses[0][0] = poured;
