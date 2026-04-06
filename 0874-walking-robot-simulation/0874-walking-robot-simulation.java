@@ -1,8 +1,8 @@
 class Solution {
     public int robotSim(int[] commands, int[][] obstacles) {
         int[][] directions = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
-        int x = 0, y = 0; 
-        int direction = 0; 
+        int x = 0, y = 0;
+        int direction = 0;
         int maxDistance = 0;
         Set<String> obstacleSet = new HashSet<>();
         for (int[] obstacle : obstacles) {
@@ -10,7 +10,7 @@ class Solution {
         }
         for (int command : commands) {
             if (command == -2) {
-                direction = (direction + 3) % 4; 
+                direction = (direction + 3) % 4;
             } else if (command == -1) {
                 direction = (direction + 1) % 4;
             } else {
