@@ -1,55 +1,54 @@
 class Solution {
-    public boolean containsCycle(char[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        boolean[][] visited = new boolean[m][n];
+    private int m, n;
+    private boolean[][] visited;
+    private final int[] dr = {-1, 1, 0, 0};
+    private final int[] dc = {0, 0, -1, 1};
 
-        // Iterate through each cell in the grid
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (!visited[i][j]) {
-                    // Start DFS from this cell
-                    if (dfs(grid, visited, i, j, -1, -1, grid[i][j])) {
+    public boolean containsCycle(char[][] grid) {
+        m = grid.length;
+        n = grid[0].length;
+        visited = new boolean[m][n];
+
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (!visited[r][c]) {
+                    if (dfs(grid, r, c, -1, -1, grid[r][c])) {
                         return true;
                     }
                 }
             }
         }
-        return false; // No cycle found
+        return false;
     }
 
-    private boolean dfs(char[][] grid, boolean[][] visited, int x, int y, int prevX, int prevY, char target) {
-        // Mark the current cell as visited
-        visited[x][y] = true;
+    private boolean dfs(char[][] grid, int r, int c, int pr, int pc, char ch) {
+        visited[r][c] = true;
 
-        // Define directions for movement: up, down, left, right
-        int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
-        for (int[] dir : directions) {
-            int newX = x + dir[0];
-            int newY = y + dir[1];
+        for (int k = 0; k < 4; k++) {
+            int nr = r + dr[k];
+            int nc = c + dc[k];
 
-            // Check boundaries
-            if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length) {
-                // Ignore the cell we just came from
-                if (newX == prevX && newY == prevY) {
-                    continue;
-                }
+            if (nr < 0 || nr >= m || nc < 0 || nc >= n) {
+                continue;
+            }
 
-                // If the cell matches the target character
-                if (grid[newX][newY] == target) {
-                    // If already visited, a cycle is found
-                    if (visited[newX][newY]) {
-                        return true;
-                    }
+            if (grid[nr][nc] != ch) {
+                continue;
+            }
 
-                    // Continue DFS
-                    if (dfs(grid, visited, newX, newY, x, y, target)) {
-                        return true;
-                    }
-                }
+            if (nr == pr && nc == pc) {
+                continue;
+            }
+
+            if (visited[nr][nc]) {
+                return true;
+            }
+
+            if (dfs(grid, nr, nc, r, c, ch)) {
+                return true;
             }
         }
 
-        return false; // No cycle found from this path
+        return false;
     }
 }
