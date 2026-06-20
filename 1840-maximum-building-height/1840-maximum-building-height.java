@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int maxBuilding(int n, int[][] restrictions) {
         int m = restrictions.length;
