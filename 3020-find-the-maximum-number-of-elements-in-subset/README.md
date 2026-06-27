@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/">3020. Find the Maximum Number of Elements in Subset</a></h2><h3>Medium</h3><hr><p>You are given an array of <strong>positive</strong> integers <code>nums</code>.</p>
+<h2><a href="https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset">3020. Find the Maximum Number of Elements in Subset</a></h2><h3>Medium</h3><hr><p>You are given an array of <strong>positive</strong> integers <code>nums</code>.</p>
 
 <p>You need to select a <span data-keyword="subset">subset</span> of <code>nums</code> which satisfies the following condition:</p>
 
